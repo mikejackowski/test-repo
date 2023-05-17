@@ -1,0 +1,2 @@
+# Ignore generated types file
+src/@types/generated/graphql.tsx

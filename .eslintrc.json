@@ -1,0 +1,84 @@
+{
+  "extends": ["plugin:prettier/recommended", "plugin:@typescript-eslint/recommended", "plugin:import/errors", "plugin:import/warnings", "plugin:import/recommended"],
+  "plugins": ["prettier"],
+  "rules": {
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true
+      }
+    ],
+    "react-hooks/exhaustive-deps": 0,
+    "jsx-quotes": [2, "prefer-double"],
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          {
+            "group": [".*"],
+            "message": "Please use absolute import from src/"
+          }
+        ]
+      }
+    ],
+    "import/no-relative-packages": "error",
+
+    "import/order": [
+      2,
+      {
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "react**",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "@mui",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "src/**",
+            "group": "index",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.test.ts", "*.test.tsx"],
+      "rules": {
+        "import/no-named-as-default": "off",
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "settings": {
+    "import/ignore": ["node_modules", "\\.(coffee|scss|css|less|hbs|svg|json)$"],
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "./"]
+      },
+      "alias": {
+        "map": [["src", "./src"]],
+        "extensions": [".ts", ".tsx"]
+      }
+    }
+  }
+}
